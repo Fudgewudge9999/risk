@@ -1,0 +1,111 @@
+Okay, here's the `.cursorrules` file adapted specifically for your Python Risk Management project using Streamlit, Pandas, Plotly, etc., focusing on a solo development workflow with AI assistance.
+
+```markdown
+# Cursor Development Rules & AI Collaboration Guide (Python Risk Management App)
+ 
+## 📜 Core Philosophy
+ 
+1.  **Simplicity:** Prioritize simple, clear, and maintainable Python solutions. Avoid unnecessary complexity or over-engineering, especially in calculations and Streamlit structure.
+2.  **Iterate:** Prefer iterating on existing, working code (e.g., adding a new calculation method, improving a plot) rather than rebuilding large sections from scratch unless necessary.
+3.  **Focus:** Concentrate efforts on the specific feature or calculation being implemented (e.g., Historical VaR, Parametric CVaR, a specific plot). Avoid unrelated changes.
+4.  **Quality:** Strive for a clean, organized, well-commented, and understandable Python codebase. Ensure calculations are correct and visualizations are clear.
+5.  **Collaboration:** This document guides both the human developer and the AI assistant for effective teamwork on this project.
+ 
+## 📚 Project Context & Understanding
+ 
+1.  **README First:**
+    *   **Always** reference the project's `README.md` *before* starting significant work. This file is the primary source for:
+        *   Project overview and goals.
+        *   Setup instructions (`requirements.txt`, running the app).
+        *   Chosen libraries and high-level structure (e.g., core logic vs. Streamlit app).
+        *   Explanation of the financial methodologies implemented (VaR/CVaR approaches).
+        *   Defined input formats (e.g., portfolio CSV structure).
+    *   If the `README.md` is unclear or conflicts with a task, update it or clarify the understanding.
+2.  **Methodology Understanding:** Ensure a clear understanding of the financial concepts being implemented (Historical VaR/CVaR, Parametric VaR/CVaR, portfolio weighting) before asking the AI to generate code for them.
+3.  **Library Awareness:** Utilize the established project libraries (`streamlit`, `pandas`, `numpy`, `scipy`, `yfinance`, `plotly`) effectively. Leverage standard idioms (e.g., Pandas vectorization). Exhaust options within these libraries before proposing new dependencies.
+ 
+## ⚙️ Task Execution & Workflow
+ 
+1.  **Task Definition:** Clearly define the feature or improvement goal for each work session (e.g., "Implement Parametric VaR calculation", "Add Plotly histogram for returns", "Create file uploader in Streamlit sidebar").
+2.  **Systematic Change Protocol:** Before making significant changes (e.g., altering a core calculation function):
+    *   **Identify Impact:** Determine how the change affects downstream calculations or UI elements.
+    *   **Plan:** Outline the steps mentally or in comments.
+    *   **Verify Testing:** Consider how to manually test the change (e.g., with a known small portfolio) or if a unit test is feasible (see Testing section).
+ 
+## 🤖 AI Collaboration & Prompting
+ 
+1.  **Clarity is Key:** Provide clear, specific, and unambiguous instructions to the AI. Define the desired outcome (e.g., "Write a Python function using Pandas and NumPy to calculate historical VaR given a Series of portfolio returns and a confidence level"), constraints (e.g., "Use `yfinance` to fetch data"), and context (e.g., "This function will be used in the Streamlit app").
+2.  **Context Referencing:** If a task spans multiple interactions, briefly remind the AI of relevant previous context, decisions, or code snippets (e.g., "Using the `portfolio_returns` Series we calculated earlier...").
+3.  **Suggest vs. Apply:** Clearly state whether the AI should *suggest* code/changes for review or *apply* them directly (use 'apply' for simple, well-defined tasks like renaming variables, formatting code). Use prefixes like "Suggestion:" or "Applying fix:".
+4.  **Question AI Output:** Critically review AI-generated code. Verify the logic (especially for financial calculations), check for edge cases, and don't blindly trust confident-sounding but potentially incorrect suggestions.
+5.  **Focus the AI:** Guide the AI to work on specific functions or parts of the Streamlit app. Avoid overly broad requests ("Build the risk app").
+6.  **Leverage Strengths:** Use the AI for boilerplate code (Streamlit UI elements), implementing standard algorithms (once understood), generating docstrings, finding syntax errors, formatting code, and suggesting alternative Pandas/NumPy approaches. Maintain human oversight for core financial logic and overall application structure.
+7.  **Incremental Interaction:** Break down complex tasks (like implementing a new risk calculation method end-to-end) into smaller steps for the AI. Review and confirm each step.
+8.  **AI Check-in (Simplified):** Before providing significant code suggestions, the AI could briefly state its plan: e.g., "Okay, I will write a function `calculate_parametric_var` taking asset returns and weights, using NumPy for calculations. Then, I'll show how to call it in the Streamlit app."
+ 
+## ✨ Code Quality & Style
+ 
+1.  **Python Guidelines:** Use type hinting (`typing` module) where it improves clarity. Write clear docstrings for functions (e.g., Google or NumPy style) explaining purpose, arguments, and return values.
+2.  **Readability & Maintainability:** Write clean, well-organized Python code. Use meaningful variable names.
+3.  **Small Files/Functions:** Keep Python files focused. Aim for functions that perform a single logical task. Consider separating core calculation logic (`risk_calculator.py`) from the Streamlit UI code (`app.py`).
+4.  **Avoid Duplication (DRY):** Actively look for and reuse existing functionality (e.g., helper functions). Refactor to eliminate duplication.
+5.  **Dependency Management:** Use `pip` and manage dependencies via `requirements.txt`.
+6.  **Linting/Formatting:** Ensure code conforms to standard Python style. Use tools like `black` (formatter) and `flake8` (linter) if desired. AI can help apply formatting.
+7.  **Pattern Consistency:** Adhere to common Pandas/NumPy patterns (vectorization over loops where possible). Keep Streamlit UI code organized.
+8.  **File Naming:** Use clear, descriptive names for Python files (e.g., `risk_calculator.py`, `app.py`, `utils.py`).
+9.  **No One-Time Scripts:** Do not commit one-time utility scripts used during development into the main project files.
+ 
+## ♻️ Refactoring
+ 
+1.  **Purposeful Refactoring:** Refactor to improve clarity, reduce duplication, simplify complexity, or better separate concerns (e.g., calculations vs. UI).
+2.  **Holistic Check:** When refactoring a function or section, check if similar logic exists elsewhere that could also be improved or consolidated.
+3.  **Edit, Don't Copy:** Modify existing files directly. Avoid duplicating files with suffixes like `-v2` or `-refactored`.
+4.  **Verify Integrations:** After refactoring calculation logic, ensure the Streamlit app still receives the correct data and displays it properly. Rerun the app and test manually.
+ 
+## ✅ Testing & Validation
+ 
+1.  **Unit Testing (Recommended):** For core calculation functions (VaR, CVaR, portfolio returns), consider writing simple unit tests using `pytest` (requires adding `pytest` to dependencies). Test with known inputs and expected outputs, including edge cases (e.g., single asset portfolio).
+2.  **Manual Verification (Essential):**
+    *   Thoroughly test the Streamlit application manually after changes.
+    *   Use a small, simple sample portfolio CSV where calculations can be verified by hand or spreadsheet.
+    *   Check plots for correctness and clarity.
+    *   Test UI elements (sliders, buttons, file upload) function as expected.
+3.  **Test Edge Cases:** Manually test scenarios like uploading an incorrectly formatted CSV, portfolios with zero weights, very short lookback periods, etc.
+ 
+## 🐛 Debugging & Troubleshooting
+ 
+1.  **Fix the Root Cause:** Prioritize fixing the underlying issue in calculations or data handling rather than just adding error handling to mask it (unless it's truly an edge case).
+2.  **Terminal Output Analysis:** Check the terminal output where `streamlit run app.py` was executed for error messages, tracebacks, or output from `print()` statements.
+3.  **Targeted Logging:** Use `print()` statements or Python's `logging` module strategically within functions to trace data flow and variable states during debugging. Use `st.write()` or `st.dataframe()` within the Streamlit app itself for temporary debugging output. *Remember to remove temporary debug statements.*
+4.  **Check `fixes/` Directory (Optional):** If complex bugs arise, consider creating a `fixes/` directory and documenting the problem/solution in a `.md` file for future reference.
+5.  **Research:** Use library documentation (Pandas, Plotly, Streamlit), Stack Overflow, and other online resources to research errors or find best practices.
+ 
+## 🔒 Security (Basic Considerations)
+ 
+1.  **Input Validation:** Validate user inputs received via Streamlit widgets (e.g., ensure confidence level is between 0 and 1, lookback period is positive). Validate the structure and basic data types within the uploaded CSV file.
+2.  **Dependency Awareness:** Be mindful that dependencies can have vulnerabilities, though less critical for a local-run analysis tool. Keep libraries reasonably updated.
+3.  **Credentials:** Never hardcode secrets or API keys if you were to extend this to use non-public data sources. Use environment variables (`.env` file) and `.gitignore` it.
+ 
+## 🌳 Version Control & Environment
+ 
+1.  **Git Hygiene:**
+    *   Commit frequently with clear, atomic messages describing the change (e.g., "feat: Add parametric VaR calculation", "fix: Correct portfolio weight calculation", "refactor: Move plotting logic to separate function").
+    *   Keep the working directory clean; ensure no unrelated or temporary files are staged or committed.
+    *   Use `.gitignore` effectively (add `venv/`, `__pycache__/`, `.env`, potentially data files if large).
+2.  **Branching Strategy:** For solo work, committing directly to `main` is often acceptable. Alternatively, use short-lived feature branches for distinct pieces of work (e.g., `feature/add-cvar`, `fix/plot-rendering`).
+3.  **.env Files:** If used (e.g., for API keys in a future version), **never** commit `.env` files. Use `.env.example` as a template if needed.
+4.  **Environment Management:** Use a virtual environment (`venv`). Ensure `requirements.txt` accurately reflects needed dependencies.
+5.  **Streamlit Server:** Ensure only one instance of the app is running if encountering issues. Restart the Streamlit server (`streamlit run app.py`) after making changes to backend Python code (`.py` files) to ensure they are loaded.
+ 
+## 📄 Documentation Maintenance
+ 
+1.  **Update README:** Keep `README.md` updated with:
+    *   Any changes to setup or running instructions.
+    *   New features added.
+    *   Explanation of calculation methodologies used.
+    *   Known limitations discovered during development.
+    *   Required CSV format.
+2.  **Keep Rules Updated:** This `.cursorrules` file can be updated if you find certain rules ineffective or discover better ways to collaborate with the AI during the project.
+```
+
+This revised version is tailored to Python, Streamlit, the specific financial libraries, and a solo development context while retaining the core principles of structured development and effective AI collaboration from the original template.
